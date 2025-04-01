@@ -1,13 +1,13 @@
-const backendUrl = "https://adept-figure-454319-h1.el.r.appspot.com";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const generateReply = async (emailText, tone = "") => {
     try {
         const response = await fetch(`${backendUrl}/api/email/generate`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
                 emailContent: emailText, // Changed from "email" to "emailContent"
-                tone: tone 
+                tone: tone
             }),
         });
         if (!response.ok) {
