@@ -235,24 +235,36 @@ function App() {
             </Box>
           </Box>
 
-          <Alert 
-            severity="warning" 
-            sx={{ 
+          <Alert
+            severity="warning"
+            icon={false}
+            sx={{
               mb: 4,
               '& .MuiAlert-message': {
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%'
-              }
+                gap: 1,
+                width: '100%',
+              },
             }}
-            action={
+          >
+            <AlertTitle sx={{ mb: 1, display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
+              <WarningIcon fontSize="small" />
+              Before You Proceed
+            </AlertTitle>
+
+            <Typography variant="body2" sx={{ opacity: 0.9, textAlign: 'center' }}>
+              The web version is facing issues right now. Please head to the Chrome Web Store to install the extension.
+            </Typography>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
               <Button
                 variant="outlined"
                 size="small"
                 startIcon={<StoreIcon />}
                 onClick={() => window.open('https://chromewebstore.google.com/detail/email-writer-assistant/nglkdacmcajpfiabnbmjeikfdaohgana', '_blank')}
-                sx={{ 
+                sx={{
                   borderColor: 'warning.main',
                   color: 'warning.main',
                   '&:hover': {
@@ -264,18 +276,7 @@ function App() {
               >
                 Get Extension
               </Button>
-            }
-          >
-            <AlertTitle sx={{ mb: 0.5 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <WarningIcon fontSize="small" />
-                For Better Experience
-              </Box>
-            </AlertTitle>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              This web version may have limitations. For the best experience with Gmail integration, 
-              install our Chrome Extension from the Web Store (store icon above ↑).
-            </Typography>
+            </Box>
           </Alert>
 
           <Paper 
