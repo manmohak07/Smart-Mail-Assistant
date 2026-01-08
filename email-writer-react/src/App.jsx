@@ -18,7 +18,9 @@ import {
   ThemeProvider,
   Tooltip,
   Fade,
-  Stack
+  Stack,
+  Alert,
+  AlertTitle
 } from '@mui/material';
 import { generateReply } from './api';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -28,6 +30,8 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import SendIcon from '@mui/icons-material/Send';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import WarningIcon from '@mui/icons-material/Warning';
+import StoreIcon from '@mui/icons-material/Store';
 
 function App() {
   const [emailContent, setEmailContent] = useState('');
@@ -230,6 +234,49 @@ function App() {
               </Tooltip>
             </Box>
           </Box>
+
+          <Alert 
+            severity="warning" 
+            sx={{ 
+              mb: 4,
+              '& .MuiAlert-message': {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%'
+              }
+            }}
+            action={
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<StoreIcon />}
+                onClick={() => window.open('https://chromewebstore.google.com/detail/email-writer-assistant/nglkdacmcajpfiabnbmjeikfdaohgana', '_blank')}
+                sx={{ 
+                  borderColor: 'warning.main',
+                  color: 'warning.main',
+                  '&:hover': {
+                    borderColor: 'warning.dark',
+                    bgcolor: 'warning.light',
+                    color: 'warning.dark'
+                  }
+                }}
+              >
+                Get Extension
+              </Button>
+            }
+          >
+            <AlertTitle sx={{ mb: 0.5 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <WarningIcon fontSize="small" />
+                For Better Experience
+              </Box>
+            </AlertTitle>
+            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+              This web version may have limitations. For the best experience with Gmail integration, 
+              install our Chrome Extension from the Web Store (store icon above ↑).
+            </Typography>
+          </Alert>
 
           <Paper 
             elevation={mode === 'light' ? 1 : 4} 
