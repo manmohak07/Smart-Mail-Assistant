@@ -47,7 +47,7 @@ public class EmailGeneratorService {
                         .maxBackoff(Duration.ofSeconds(10))
                         .filter(throwable -> {
                             if (throwable instanceof WebClientResponseException) {
-                                int code = ((WebClientResponseException) throwable).getRawStatusCode();
+                                int code = ((WebClientResponseException) throwable).getStatusCode().value();
                                 return code == 429 || (code >= 500 && code < 600);
                             }
                             return throwable instanceof IOException;
